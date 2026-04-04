@@ -37,7 +37,7 @@ function Titlebar()
 {
     return (
         <GRID id='titlebar'>
-            <span>Sipeed - Tang Nano 9K Toolkit | Device: GW1NR-LV9QN88PC6/I5 | Family: GW1N-9C</span>
+            <span>FPGA Toolkit | Sipeed - Tang Nano 9K | Device: GW1NR-LV9QN88PC6/I5 | Family: GW1N-9C</span>
             <button className='minimize' onClick={() => window.ipc.send('ipc-minimize')}><RemoveRounded/></button>
             <button className='close' onClick={() =>  window.ipc.send('ipc-close')}><CloseRounded/></button>
         </GRID>
