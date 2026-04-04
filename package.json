@@ -1,6 +1,6 @@
 {
   "name": "fpga-toolkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A small wrapper to automate the build process of generating a bitstream from a verilog file",
   "main": "index.js",
   "author": "biologyscience",
