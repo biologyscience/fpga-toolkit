@@ -1,0 +1,41 @@
+{
+  "name": "fpga-toolkit",
+  "version": "1.0.0",
+  "description": "A small wrapper to automate the build process of generating a bitstream from a verilog file",
+  "main": "index.js",
+  "author": "biologyscience",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "vite build ./react",
+    "electron": "nodemon --watch index.js --exec \"electron index.js --dev\"",
+    "make": "electron-forge make",
+    "react": "vite ./react --host",
+    "start": "vite build ./react && electron index.js"
+  },
+  "dependencies": {
+    "chokidar": "5.0.0",
+    "electron-store": "^11.0.2"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@electron-forge/cli": "^7.11.1",
+    "@electron-forge/maker-zip": "^7.11.1",
+    "@eslint/js": "^9.39.1",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/material": "^7.3.6",
+    "@svgr/rollup": "^8.1.0",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "electron": "^39.2.7",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sass": "^1.97.1",
+    "vite": "^7.2.4"
+  }
+}

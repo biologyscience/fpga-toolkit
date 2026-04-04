@@ -1,0 +1,37 @@
+module.exports = {
+    packagerConfig: {
+        ignore: (path) =>
+        {
+            if (path.includes('node_modules'))
+            {
+                if (path.includes('/.')) return true;
+                return false;
+            }
+
+            if (path.includes('.git')) return true;
+            if (path.includes('.github')) return true;
+
+            if (path.includes('info')) return true;
+            if (path.includes('out')) return true;
+
+            if (path.includes('react/'))
+            {
+                if (path.includes('dist')) return false;
+                return true;
+            }
+
+            if (path.includes('.gitignore')) return true;
+            if (path.includes('config.json')) return true;
+            if (path.includes('forge.config.js')) return true;
+            if (path.includes('package-lock.json')) return true;
+
+            return false;
+        }
+    },
+    makers: [
+        {
+            name: '@electron-forge/maker-zip',
+            platforms: ['win32'],
+        }
+    ]
+}

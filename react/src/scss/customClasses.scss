@@ -1,0 +1,34 @@
+.relative { position: relative; }
+
+.absolute { position: absolute; }
+
+.fixed { position: fixed; }
+
+.grid { display: grid; }
+
+.block { display: block; }
+
+.flexROW
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.flexCOL
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.displayNone { display: none !important; }
+
+.visibilityHidden { visibility: hidden; }
+
+.overflowHidden { overflow: hidden; }
+
+.overflowPrevent
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
