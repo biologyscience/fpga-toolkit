@@ -7,8 +7,11 @@ const { spawn }  = require('child_process');
 
 let WINDOW = null;
 
+let lastLog;
 function logger(data)
 {
+    lastLog = Date.now();
+
     if (WINDOW === null) return;
 
     if (typeof(data) === 'string') WINDOW.webContents.send('ipc-addLog', `${'_'.repeat(20)} ${data} ${'_'.repeat(20)}`);
@@ -147,7 +150,7 @@ ipcMain.on('ipc-softReset', () => cmd.stdin.write('openFPGALoader -b tangnano9k 
 
 let busy = false;
 
-function waitForFile(file, cooldown)
+function waitForFile(file)
 {
     return new Promise((resolve) =>
     {
@@ -155,7 +158,19 @@ function waitForFile(file, cooldown)
 
         if (existsSync(filepath)) return resolve(true);
 
-        if (!cooldown) setTimeout(() => resolve(false), 10 * 1000);
+        let resolved = false;
+
+        const int = setInterval(() =>
+        {
+            if (resolved) return clearInterval(int);
+
+            if (Date.now() - lastLog >= 7_000)
+            {
+                resolve(resolved);
+                clearInterval(int);
+            }
+    
+        }, 10);
 
         const dir = path.dirname(filepath);
 
@@ -164,7 +179,9 @@ function waitForFile(file, cooldown)
             if (changed === path.basename(filepath) && existsSync(filepath))
             {
                 watcher.close();
-                resolve(true);
+
+                resolved = true;
+                resolve(resolved);
             }
         });
     });
@@ -201,7 +218,7 @@ async function upload()
 {
     logger('START UPLOAD');
     cmd.stdin.write(`openFPGALoader -b tangnano9k build/stream.fs ${config.get('flash') ? '--write-flash' : ''} && type nul >build/dummy.file\n`);
-    await waitForFile('dummy.file', false);
+    await waitForFile('dummy.file');
     logger('END UPLOAD');
 }
 
